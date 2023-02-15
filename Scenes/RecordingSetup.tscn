@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/RecordingSetup.gd" type="Script" id=1]
+[ext_resource path="res://Assets/theme.tres" type="Theme" id=2]
+
+[sub_resource type="AudioStreamMicrophone" id=1]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 603.0
+margin_bottom = 33.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="OptionButtonInputDevices" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+margin_right = 44.0
+margin_bottom = 33.0
+theme = ExtResource( 2 )
+
+[node name="ButtonMuteInputAudio" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 48.0
+margin_right = 122.0
+margin_bottom = 33.0
+theme = ExtResource( 2 )
+text = "Muted"
+
+[node name="ButtonRecord" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 126.0
+margin_right = 300.0
+margin_bottom = 33.0
+theme = ExtResource( 2 )
+text = "Begin Recording"
+
+[node name="ButtonTest1" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 304.0
+margin_right = 455.0
+margin_bottom = 33.0
+theme = ExtResource( 2 )
+text = "Save as Test1"
+
+[node name="ButtonTest2" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 459.0
+margin_right = 603.0
+margin_bottom = 33.0
+theme = ExtResource( 2 )
+text = "Save as test2"
+
+[node name="ButtonChangeScene" type="Button" parent="VBoxContainer"]
+margin_top = 37.0
+margin_right = 161.0
+margin_bottom = 70.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 2 )
+text = "Return to home"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 74.0
+margin_right = 1024.0
+margin_bottom = 107.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_top = 3.0
+margin_right = 617.0
+margin_bottom = 30.0
+theme = ExtResource( 2 )
+text = "Select backing track with this drop down thingy just to the right."
+
+[node name="OptionButtonBackingTrack" type="OptionButton" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 621.0
+margin_right = 665.0
+margin_bottom = 33.0
+theme = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 1 )
+autoplay = true
+bus = "Record"
+
+[node name="AudioStreamPlayerBackingTrack" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = "BackingTrack"
+
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/OptionButtonInputDevices" to="." method="_on_OptionButtonInputDevices_item_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonMuteInputAudio" to="." method="_on_ButtonMuteInputAudio_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonRecord" to="." method="_on_ButtonRecord_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonTest1" to="." method="_on_ButtonTest1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonTest2" to="." method="_on_ButtonTest2_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonChangeScene" to="." method="_on_ButtonChangeScene_pressed"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer2/OptionButtonBackingTrack" to="." method="_on_OptionButtonBackingTrack_item_selected"]
