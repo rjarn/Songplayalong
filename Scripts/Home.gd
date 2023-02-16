@@ -16,6 +16,19 @@ func _ready():
 #	pass
 
 
-func _on_Button_pressed():
+
+func _on_ButtonBeginRecording_pressed():
 	get_tree().change_scene("res://Scenes/RecordingSetup.tscn")
+	pass # Replace with function body.
+	
+
+
+
+func _on_ButtonPlaySongs_pressed():
+	get_tree().change_scene("res://Scenes/PlaySongs.tscn")
+	pass # Replace with function body.
+
+
+func _on_ButtonExitGame_pressed():
+	get_tree().quit()
 	pass # Replace with function body.

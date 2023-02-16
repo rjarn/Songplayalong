@@ -10,24 +10,46 @@ script = ExtResource( 2 )
 margin_right = 1024.0
 margin_bottom = 600.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="ButtonExitGame" type="Button" parent="VBoxContainer"]
+margin_left = 998.0
 margin_right = 1024.0
-margin_bottom = 298.0
+margin_bottom = 33.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource( 1 )
+text = "X"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 37.0
+margin_right = 1024.0
+margin_bottom = 222.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-text = "Songplayalong idk lol"
+text = "SONGPLAYALONG?"
 align = 1
 valign = 2
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 453.0
+[node name="ButtonBeginRecording" type="Button" parent="VBoxContainer"]
+margin_left = 428.0
 margin_top = 302.0
-margin_right = 571.0
+margin_right = 596.0
 margin_bottom = 335.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+text = "Begin recording"
+
+[node name="ButtonPlaySongs" type="Button" parent="VBoxContainer"]
+margin_left = 383.0
+margin_top = 415.0
+margin_right = 641.0
+margin_bottom = 448.0
 size_flags_horizontal = 6
 size_flags_vertical = 2
 theme = ExtResource( 1 )
-text = "start game"
+text = "Playback recorded songs"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonExitGame" to="." method="_on_ButtonExitGame_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonBeginRecording" to="." method="_on_ButtonBeginRecording_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonPlaySongs" to="." method="_on_ButtonPlaySongs_pressed"]

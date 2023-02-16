@@ -13,7 +13,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 603.0
+margin_right = 288.0
 margin_bottom = 33.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -25,31 +25,17 @@ theme = ExtResource( 2 )
 
 [node name="ButtonMuteInputAudio" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 48.0
-margin_right = 122.0
+margin_right = 110.0
 margin_bottom = 33.0
 theme = ExtResource( 2 )
-text = "Muted"
+text = "Mute"
 
 [node name="ButtonRecord" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 126.0
-margin_right = 300.0
+margin_left = 114.0
+margin_right = 288.0
 margin_bottom = 33.0
 theme = ExtResource( 2 )
 text = "Begin Recording"
-
-[node name="ButtonTest1" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 304.0
-margin_right = 455.0
-margin_bottom = 33.0
-theme = ExtResource( 2 )
-text = "Save as Test1"
-
-[node name="ButtonTest2" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 459.0
-margin_right = 603.0
-margin_bottom = 33.0
-theme = ExtResource( 2 )
-text = "Save as test2"
 
 [node name="ButtonChangeScene" type="Button" parent="VBoxContainer"]
 margin_top = 37.0
@@ -74,9 +60,10 @@ text = "Select backing track with this drop down thingy just to the right."
 
 [node name="OptionButtonBackingTrack" type="OptionButton" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 621.0
-margin_right = 665.0
+margin_right = 866.0
 margin_bottom = 33.0
 theme = ExtResource( 2 )
+text = "Select song file here"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 1 )
@@ -87,10 +74,66 @@ bus = "Record"
 autoplay = true
 bus = "BackingTrack"
 
+[node name="VBoxContainerSavePrompt" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 48.0
+margin_top = 37.0
+margin_right = 934.0
+margin_bottom = 528.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LabelSavePrompt" type="Label" parent="VBoxContainerSavePrompt"]
+margin_right = 886.0
+margin_bottom = 161.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+theme = ExtResource( 2 )
+text = "Type the name of the audio file you want to save."
+align = 1
+valign = 1
+
+[node name="TextEditFileName" type="TextEdit" parent="VBoxContainerSavePrompt"]
+margin_top = 165.0
+margin_right = 886.0
+margin_bottom = 326.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainerSavePrompt"]
+margin_top = 330.0
+margin_right = 886.0
+margin_bottom = 491.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="ButtonSaveSong" type="Button" parent="VBoxContainerSavePrompt/HBoxContainer"]
+margin_left = 171.0
+margin_top = 64.0
+margin_right = 269.0
+margin_bottom = 97.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 2 )
+text = "Save file"
+
+[node name="ButtonDiscardSong" type="Button" parent="VBoxContainerSavePrompt/HBoxContainer"]
+margin_left = 604.0
+margin_top = 64.0
+margin_right = 727.0
+margin_bottom = 97.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 2 )
+text = "Discard file"
+
 [connection signal="item_selected" from="VBoxContainer/HBoxContainer/OptionButtonInputDevices" to="." method="_on_OptionButtonInputDevices_item_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonMuteInputAudio" to="." method="_on_ButtonMuteInputAudio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonRecord" to="." method="_on_ButtonRecord_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonTest1" to="." method="_on_ButtonTest1_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonTest2" to="." method="_on_ButtonTest2_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonChangeScene" to="." method="_on_ButtonChangeScene_pressed"]
 [connection signal="item_selected" from="VBoxContainer/HBoxContainer2/OptionButtonBackingTrack" to="." method="_on_OptionButtonBackingTrack_item_selected"]
+[connection signal="pressed" from="VBoxContainerSavePrompt/HBoxContainer/ButtonSaveSong" to="." method="_on_ButtonSaveSong_pressed"]
+[connection signal="pressed" from="VBoxContainerSavePrompt/HBoxContainer/ButtonDiscardSong" to="." method="_on_ButtonDiscardSong_pressed"]

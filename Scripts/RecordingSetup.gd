@@ -24,11 +24,18 @@ var booleanFileName = false
 var path
 
 var optionButtonInputDevices
+# the below vbox will be invisible until a recording is finished
+# and will be potentially saved after given a file name.
+var vboxContainerSavePrompt
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Assign OptionButton to a smaller length name so the code doesnt look as big.
 	optionButtonInputDevices = $VBoxContainer/HBoxContainer/OptionButtonInputDevices
+	
+	# will be visible when saving a recording
+	vboxContainerSavePrompt = $VBoxContainerSavePrompt
+	vboxContainerSavePrompt.visible = false
 	
 	# populate OptionButton with all detected audio input devices.
 	for i in AudioServer.capture_get_device_list().size():
@@ -101,13 +108,15 @@ func _on_ButtonRecord_pressed():
 		
 		effect.set_recording_active(false)
 		
-		if booleanFileName:
-			recording.save_to_wav("Recordings/test1.wav")
-		else:
-			recording.save_to_wav("Recordings/test2.wav")
+		$VBoxContainer.visible = false
+		vboxContainerSavePrompt.visible = true
+		#if booleanFileName:
+			#recording.save_to_wav("Recordings/test1.wav")
+		#else:
+			#recording.save_to_wav("Recordings/test2.wav")
 		
-		$VBoxContainer/HBoxContainer/ButtonRecord.text = "Begin Recording"
-		get_tree().reload_current_scene()
+		#$VBoxContainer/HBoxContainer/ButtonRecord.text = "Begin Recording"
+		#get_tree().reload_current_scene()
 		pass
 	
 	pass # Replace with function body.
@@ -150,16 +159,21 @@ func _on_OptionButtonBackingTrack_item_selected(index):
 			
 	dir.list_dir_end()
 	
+	#if 
 	AudioPlayerBackingTrack.stream = load("res://Recordings/" + files[index])
 	
 	pass # Replace with function body.
 
 
-func _on_ButtonTest1_pressed():
-	booleanFileName = true
+
+func _on_ButtonSaveSong_pressed():
+	if $VBoxContainerSavePrompt/TextEditFileName.text.length() > 0:
+		if $VBoxContainerSavePrompt/TextEditFileName.text.is_valid_filename():
+			recording.save_to_wav("Recordings/" + $VBoxContainerSavePrompt/TextEditFileName.text)
+			get_tree().reload_current_scene()
 	pass # Replace with function body.
 
 
-func _on_ButtonTest2_pressed():
-	booleanFileName = false
+func _on_ButtonDiscardSong_pressed():
+	get_tree().reload_current_scene()
 	pass # Replace with function body.
