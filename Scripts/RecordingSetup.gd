@@ -110,12 +110,8 @@ func _on_ButtonRecord_pressed():
 		
 		$VBoxContainer.visible = false
 		vboxContainerSavePrompt.visible = true
-		#if booleanFileName:
-			#recording.save_to_wav("Recordings/test1.wav")
-		#else:
-			#recording.save_to_wav("Recordings/test2.wav")
 		
-		#$VBoxContainer/HBoxContainer/ButtonRecord.text = "Begin Recording"
+
 		#get_tree().reload_current_scene()
 		pass
 	
@@ -123,6 +119,9 @@ func _on_ButtonRecord_pressed():
 
 
 func populateOptionButtonWithAudioFiles():
+	
+	
+	
 	var files = []
 	var dir = Directory.new()
 	dir.open("res://Recordings/")
@@ -145,23 +144,7 @@ func _on_OptionButtonBackingTrack_item_selected(index):
 	# to be played as a backing track when user records themselves.
 	var AudioPlayerBackingTrack = $AudioStreamPlayerBackingTrack
 	
-	var files = []
-	var dir = Directory.new()
-	dir.open("res://Recordings/")
-	dir.list_dir_begin()
-	
-	while true:
-		var file = dir.get_next()
-		if file == "":
-			break
-		elif not file.begins_with("."):
-			files.append(file)
-			
-	dir.list_dir_end()
-	
-	#if 
-	AudioPlayerBackingTrack.stream = load("res://Recordings/" + files[index])
-	
+	AudioPlayerBackingTrack.stream = load("res://Recordings/" + $VBoxContainer/HBoxContainer2/OptionButtonBackingTrack.text)
 	pass # Replace with function body.
 
 
